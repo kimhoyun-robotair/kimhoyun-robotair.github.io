@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  project: CollectionEntry<'projects'>;
+  headingLevel?: 'h2' | 'h3' | 'h4';
+}
+const { project: { id, data }, headingLevel: Heading = 'h2' } = Astro.props;
+const code = data.links.find((link) => link.label === 'Code');
+---
+<article class="project-list-item" data-project={id}>
+  <a class="project-thumb" href={`/projects/${id}/`}><img src={data.cover} alt={data.coverAlt} width={data.coverWidth} height={data.coverHeight} loading="lazy" /></a>
+  <div>
+    {data.undergraduate && <span class="project-type">Undergraduate project</span>}
+    <Heading><a href={`/projects/${id}/`}>{data.title}</a></Heading>
+    <p>{data.description}</p>
+    {data.highlight && <p class="project-highlight"><span aria-hidden="true">🏆</span> {data.highlight}</p>}
+    {data.membershipNote && <p class="project-membership">{data.membershipNote}</p>}
+    <div class="tags">{data.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+    <div class="project-card-actions"><a href={`/projects/${id}/`}>Explore project <span aria-hidden="true">→</span></a>{code && <a href={code.url}>Code <span aria-hidden="true">↗</span></a>}</div>
+  </div>
+</article>

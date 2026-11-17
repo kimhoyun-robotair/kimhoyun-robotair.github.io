@@ -1,0 +1,12 @@
+---
+interface Props { headings: { depth: number; slug: string; text: string }[]; }
+const headings = Astro.props.headings.filter((h) => h.depth === 2);
+---
+{headings.length > 0 && (
+    <details class="contents" open>
+      <summary>On this page</summary>
+      <nav aria-label="Table of contents">
+        {headings.map((h, i) => <a href={`#${h.slug}`}><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{h.text}</a>)}
+      </nav>
+    </details>
+)}

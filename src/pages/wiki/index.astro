@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getNotes, formatDate, statusLabels } from '../../lib/content';
+const notes = await getNotes();
+const topics = [...new Set(notes.map((note) => note.data.topic))].sort();
+const tags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
+---
+<Base title="Research Notes" description="An evolving notebook on robotics, spacecraft sensing, simulation, and the papers behind them." active="wiki">
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar">
+      <p class="sidebar-title">Research Notes<span aria-hidden="true">.</span></p>
+      <nav aria-label="Note topics">
+        <a href="/wiki/" data-topic="" aria-current="page">All notes <span>{notes.length}</span></a>
+        {topics.map((topic) => <a href={`/wiki/?topic=${encodeURIComponent(topic)}`} data-topic={topic}>{topic}<span>{notes.filter((note) => note.data.topic === topic).length}</span></a>)}
+      </nav>
+      <p class="sidebar-label">Current thread</p>
+      <div class="topic-path">Space robotics<br />↳ Spacecraft sensors<br />&nbsp;&nbsp; ↳ Star trackers</div>
+      <p class="sidebar-label">About this notebook</p>
+      <p class="small muted">Notes that grow as I read, connect ideas, and revisit what I have learned.</p>
+    </aside>
+    <div class="article-main">
+      <header class="wiki-intro"><p class="eyebrow">Read · Understand · Connect</p><h1>A working notebook.</h1><p>Paper notes and study guides on robotics and beyond. A place to keep the details, follow a question, and connect one idea to the next.</p></header>
+      <div class="search-controls" id="search-controls" hidden>
+        <label class="search-box"><span class="sr-only">Search notes</span><input id="note-search" type="search" placeholder="Search titles, notes, or tags…" autocomplete="off" /><kbd aria-hidden="true">/</kbd></label>
+        <label class="sr-only" for="tag-filter">Filter by tag</label>
+        <select id="tag-filter"><option value="">All tags</option>{tags.map((tag) => <option value={tag}>{tag}</option>)}</select>
+      </div>
+      <div class="search-summary"><p id="result-count" role="status" aria-live="polite">{notes.length} notes</p><button type="button" class="text-button" id="reset-search" hidden>Clear filters</button></div>
+      <noscript><p class="small muted">All notes are listed below. Enable JavaScript to search and filter them.</p></noscript>
+      <div id="notes">{notes.map((note) => (
+        <article class="wiki-note" data-note data-topic={note.data.topic} data-tags={JSON.stringify(note.data.tags)} data-search={[note.data.title, note.data.description, note.data.topic, ...note.data.tags, note.body ?? ''].join(' ')}>
+          <div class="note-meta"><span>{note.data.topic}</span><span class="status">{statusLabels[note.data.status]}</span><time datetime={formatDate(note.data.updated)}>{formatDate(note.data.updated)}</time></div>
+          <h2><a href={`/wiki/${note.id}/`}>{note.data.title}</a></h2>
+          <p>{note.data.description}</p>
+          <div class="tags">{note.data.tags.map((tag) => <a class="tag" href={`/wiki/?tag=${encodeURIComponent(tag)}`}>{tag}</a>)}</div>
+        </article>
+      ))}</div>
+      <div id="empty-state" class="empty-state" hidden><h2>No matching notes.</h2><p class="muted">Try a different keyword or clear the filters.</p><button type="button" class="button" id="empty-reset">Show all notes</button></div>
+    </div>
+  </div>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#note-search')!;
+    const tags = document.querySelector<HTMLSelectElement>('#tag-filter')!;
+    const reset = document.querySelector<HTMLButtonElement>('#reset-search')!;
+    const entries = [...document.querySelectorAll<HTMLElement>('[data-note]')].map((element) => ({
+      element,
+      text: (element.dataset.search ?? '').normalize('NFKC').toLocaleLowerCase('en'),
+      topic: element.dataset.topic ?? '',
+      tags: JSON.parse(element.dataset.tags ?? '[]') as string[],
+    }));
+    const topicLinks = [...document.querySelectorAll<HTMLAnchorElement>('a[data-topic]')];
+    let topic = '';
+
+    function filter(updateUrl = true) {
+      const words = search.value.normalize('NFKC').toLocaleLowerCase('en').trim().split(/\s+/).filter(Boolean);
+      let count = 0;
+      for (const entry of entries) {
+        const visible = (!topic || entry.topic === topic) && (!tags.value || entry.tags.includes(tags.value)) && words.every((word) => entry.text.includes(word));
+        entry.element.hidden = !visible;
+        if (visible) count++;
+      }
+      document.querySelector('#result-count')!.textContent = `${count} ${count === 1 ? 'note' : 'notes'}${topic ? ` in ${topic}` : ''}`;
+      document.querySelector<HTMLElement>('#empty-state')!.hidden = count !== 0;
+      reset.hidden = !(search.value || tags.value || topic);
+      for (const link of topicLinks) {
+        if (link.dataset.topic === topic) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+      }
+      if (updateUrl) {
+        const params = new URLSearchParams();
+        if (search.value.trim()) params.set('q', search.value.trim());
+        if (topic) params.set('topic', topic);
+        if (tags.value) params.set('tag', tags.value);
+        history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
+      }
+    }
+    function readUrl() {
+      const params = new URLSearchParams(location.search);
+      search.value = params.get('q') ?? '';
+      topic = params.get('topic') ?? '';
+      const tag = params.get('tag') ?? '';
+      if (tag && ![...tags.options].some((option) => option.value === tag)) tags.add(new Option(tag, tag));
+      tags.value = tag;
+      filter(false);
+    }
+    function clear() { search.value = ''; tags.value = ''; topic = ''; filter(); search.focus(); }
+    document.querySelector<HTMLElement>('#search-controls')!.hidden = false;
+    search.addEventListener('input', () => filter());
+    tags.addEventListener('change', () => filter());
+    reset.addEventListener('click', clear);
+    document.querySelector('#empty-reset')!.addEventListener('click', clear);
+    for (const link of topicLinks) link.addEventListener('click', (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault(); topic = link.dataset.topic ?? ''; filter();
+    });
+    window.addEventListener('popstate', readUrl);
+    document.addEventListener('keydown', (event) => {
+      const target = event.target as HTMLElement;
+      if (event.key === '/' && !event.ctrlKey && !event.metaKey && !event.altKey && !target.closest('input, textarea, select, [contenteditable]')) {
+        event.preventDefault(); search.focus();
+      }
+    });
+    readUrl();
+  </script>
+</Base>

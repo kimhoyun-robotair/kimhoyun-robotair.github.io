@@ -1,0 +1,74 @@
+---
+import { profile } from '../data/profile';
+import '../styles/global.css';
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  active?: 'home' | 'projects' | 'wiki';
+  pageClass?: string;
+  noindex?: boolean;
+}
+const { title, description = profile.description, image = profile.portrait, active = 'home', pageClass = '', noindex = false } = Astro.props;
+const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · Robotics Research`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class={pageClass}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/">From Indoor to Space Robotics<span aria-hidden="true">.</span></a>
+        <nav aria-label="Main navigation">
+          <a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+          <a href="/#research">Research</a>
+          <a href="/projects/" aria-current={active === 'projects' ? 'page' : undefined}>Projects</a>
+          <a href="/wiki/" aria-current={active === 'wiki' ? 'page' : undefined}>Research Notes</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer">
+      <div><span>© {new Date().getUTCFullYear()} Hoyun Kim</span><span class="footer-dot" aria-hidden="true">·</span><span><strong>{profile.labAcronym}</strong>, <strong>{profile.institution}</strong></span></div>
+      <a href={`mailto:${profile.email}`}>Get in touch <span aria-hidden="true">↗</span></a>
+    </footer>
+    <script>
+      document.querySelectorAll<HTMLButtonElement>('[data-copy-target]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const content = document.getElementById(button.dataset.copyTarget ?? '');
+          if (!content) return;
+          try {
+            await navigator.clipboard.writeText(content.textContent ?? '');
+            button.textContent = 'Copied!';
+            setTimeout(() => { button.textContent = 'Copy BibTeX'; }, 2200);
+          } catch {
+            const range = document.createRange();
+            range.selectNodeContents(content);
+            const selection = window.getSelection();
+            selection?.removeAllRanges();
+            selection?.addRange(range);
+            button.textContent = 'Selected — copy manually';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

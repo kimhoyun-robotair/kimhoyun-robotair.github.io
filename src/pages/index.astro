@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectGroups from '../components/ProjectGroups.astro';
+import { profile, news, publications } from '../data/profile';
+import { getProjects } from '../lib/content';
+const projects = await getProjects();
+---
+<Base>
+  <div class="shell home-shell">
+    <section class="profile" aria-labelledby="profile-name">
+      <div>
+        <h1 id="profile-name">{profile.name}</h1>
+        <p class="position">{profile.role} · <strong>{profile.labAcronym}</strong>, <strong>{profile.institution}</strong></p>
+        <p>I am currently pursuing a master’s degree at <a href={profile.institutionUrl}><strong>{profile.institution}</strong></a> in South Korea, where I am a member of the <a href={profile.labUrl}>{profile.affiliation} (<strong>{profile.labAcronym}</strong>)</a>.</p>
+        <p>My interests span <strong>Field Robotics</strong>, <strong>Aerospace Engineering</strong>, and <strong>Sim2Real</strong>. I am particularly interested in building autonomous robotic systems that transfer capabilities developed in simulation to reliable operation in challenging real-world environments.</p>
+        <div class="text-links">
+          <a href={`mailto:${profile.email}`}>Email</a>
+          <a href={profile.scholar}>Google Scholar</a>
+          <a href={profile.github}>GitHub</a>
+          <a href={profile.linkedin}>LinkedIn</a>
+          <a href="/wiki/">Research Notes <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="profile-photo">
+        <img class="portrait" src={profile.portrait} alt="Hoyun Kim" width="413" height="531" fetchpriority="high" />
+        <figcaption><strong>{profile.institution}</strong> · South Korea<br /><a href={`mailto:${profile.email}`}>{profile.email}</a></figcaption>
+      </figure>
+    </section>
+    <ul class="interest-list" aria-label="Research interests">{profile.interests.map((interest) => <li>{interest}</li>)}</ul>
+
+    <section class="section" aria-labelledby="news-heading">
+      <h2 class="home-section-title" id="news-heading">Recent News</h2>
+      <ul class="news-list">{news.map((item) => (
+        <li>
+          <time>{item.date}</time>
+          <div class="news-entry"><span class="news-emoji" aria-hidden="true">{item.emoji}</span><p>{item.segments.map((segment) => segment.href ? <a href={segment.href}>{segment.text}</a> : segment.text)}</p></div>
+        </li>
+      ))}</ul>
+    </section>
+
+    <section class="section" id="research" aria-labelledby="research-heading">
+      <div class="section-heading"><h2 class="home-section-title" id="research-heading">Research</h2><a href={profile.scholar}>Google Scholar <span aria-hidden="true">↗</span></a></div>
+      <div>{publications.map((paper) => (
+        <article class="publication">
+          <a class="publication-thumb" href={paper.links[0].url}><img src={paper.image} alt={paper.alt} width={paper.imageWidth} height={paper.imageHeight} loading="lazy" /></a>
+          <div>
+            <h3><a href={paper.links[0].url}>{paper.title}</a></h3>
+            <p class="authors">{paper.authors.map((name, i) => <>{i > 0 ? ', ' : ''}{name === profile.name ? <strong>{name}</strong> : name}</>)}</p>
+            <p class="venue">{paper.venue}, {paper.year}</p>
+            <p>{paper.summary}</p>
+            <div class="text-links">{paper.links.map((link) => <a href={link.url}>{link.label}</a>)}</div>
+          </div>
+        </article>
+      ))}</div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-heading">
+      <div class="section-heading"><h2 class="home-section-title" id="projects-heading">Projects</h2><a href="/projects/">View all projects <span aria-hidden="true">→</span></a></div>
+      <ProjectGroups projects={projects} yearHeadingLevel="h3" />
+    </section>
+
+    <section class="section" id="notes" aria-labelledby="notes-heading">
+      <h2 class="home-section-title" id="notes-heading">Research Notes</h2>
+      <p class="notes-intro">I also keep notes on papers, concepts, and things I learn along the way.</p>
+    </section>
+  </div>
+</Base>

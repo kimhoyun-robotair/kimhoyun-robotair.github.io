@@ -1,0 +1,33 @@
+Profile
+  hoyunkim.jpg: supplied by Hoyun Kim in the homepage repository.
+
+Updated research and undergraduate project images
+  Supplied by Hoyun Kim in tempimages/, then copied into the deployment assets.
+  The site does not read from tempimages/ at build time or in the browser.
+  marslab/marslab.png <- marslab.png
+  research/surveyisparo.png <- surveyisparo.png
+  research/workshopsurvey.png <- workshopsurvey.png
+  projects/f1tenth.jpg <- F1TENTH.jpg
+  projects/dok4.jpg <- DOK4.jpg
+  projects/dudeoji.jpg <- scalecar.jpg
+  projects/daram-g.jpg <- DARAM-G.jpg
+  projects/inha-aerodream.jpg <- 2024_inha_aerodream.jpg
+
+MarsLab
+  Images copied from ~/MarsLab/docs/asset and docs/asset/showcase.
+  Videos in /videos/marslab copied from ~/MarsLab/docs/asset/showcase.
+  Project: https://github.com/kimhoyun-robotair/MarsLab
+  Authors: Hoyun Kim, Beomsu Kim, Giseop Kim.
+  The showcase's original source notes identify:
+    drive-crater.mp4: video/marslab-teaser/public/paper-film/05-crater-drive-side.mp4
+    dust.mp4: video/marslab-teaser/public/paper-film-v4/dust-sweep.mp4
+  Existing showcase encodes are 960 px wide, H.264, muted.
+
+Star tracker reading notes
+  Copied from the star-tracker note in Hoyun Kim's My-Research-and-Study-Wiki.
+  Figures are presentation slides by Tobias Kamp, DLR Institute of Robotics
+  and Mechatronics, iSpaRo 2026 (Cologne, November 3–6, 2026).
+  Title: A Real-Time-Capable Star Tracker Sensor Model for Ground-Based
+  Verification of On-Orbit Servicing Applications.
+  Original attribution remains visible in the images and is repeated in captions.
+  These are figures from the reviewed work, not Hoyun Kim's own research results.

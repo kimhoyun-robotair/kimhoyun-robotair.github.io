@@ -1,0 +1,40 @@
+# Dependencies and build output (created by GitHub Actions)
+/node_modules/
+/dist/
+/.astro/
+/.cache/
+*.tsbuildinfo
+
+# Local input material; the deployed portrait is public/images/hoyunkim.jpg
+/info.md
+/hoyunkim.jpg
+
+# Local documentation, authoring templates, and browser tests
+/README.md
+/templates/
+/tests/
+/playwright.config.ts
+/playwright-report/
+/test-results/
+/coverage/
+
+# Local environment, editor settings, and agent configuration
+.env
+.env.*
+/.vscode/
+/.idea/
+/.codex/
+/.agents/
+/AGENTS.md
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Temporal Image and video files for making homepage
+tempimages/
+
+# Keep src/, public/ (including media credits), scripts/check-links.mjs,
+# .github/workflows/, package*.json, .node-version, and Astro/TypeScript
+# configuration available to the GitHub Pages build.

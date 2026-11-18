@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProjectGroups from '../components/ProjectGroups.astro';
-import { profile, news, publications } from '../data/profile';
+import PublicationList from '../components/PublicationList.astro';
+import { profile, news } from '../data/profile';
 import { getProjects } from '../lib/content';
 const projects = await getProjects();
 ---
@@ -12,7 +13,8 @@ const projects = await getProjects();
         <h1 id="profile-name">{profile.name}</h1>
         <p class="position">{profile.role} · <strong>{profile.labAcronym}</strong>, <strong>{profile.institution}</strong></p>
         <p>I am currently pursuing a master’s degree at <a href={profile.institutionUrl}><strong>{profile.institution}</strong></a> in South Korea, where I am a member of the <a href={profile.labUrl}>{profile.affiliation} (<strong>{profile.labAcronym}</strong>)</a>.</p>
-        <p>My interests span <strong>Field Robotics</strong>, <strong>Aerospace Engineering</strong>, and <strong>Sim2Real</strong>. I am particularly interested in building autonomous robotic systems that transfer capabilities developed in simulation to reliable operation in challenging real-world environments.</p>
+        <p>I earned my degree in <strong>Aerospace Engineering</strong> from Inha University.</p>
+        <p>My interests span <strong>Field Robotics</strong>, <strong>Aerospace Engineering</strong>, <strong>Sim2Real</strong>, and <strong>SLAM</strong>. I am particularly interested in building autonomous robotic systems that transfer capabilities developed in simulation to reliable operation in challenging real-world environments.</p>
         <div class="text-links">
           <a href={`mailto:${profile.email}`}>Email</a>
           <a href={profile.scholar}>Google Scholar</a>
@@ -39,19 +41,8 @@ const projects = await getProjects();
     </section>
 
     <section class="section" id="research" aria-labelledby="research-heading">
-      <div class="section-heading"><h2 class="home-section-title" id="research-heading">Research</h2><a href={profile.scholar}>Google Scholar <span aria-hidden="true">↗</span></a></div>
-      <div>{publications.map((paper) => (
-        <article class="publication">
-          <a class="publication-thumb" href={paper.links[0].url}><img src={paper.image} alt={paper.alt} width={paper.imageWidth} height={paper.imageHeight} loading="lazy" /></a>
-          <div>
-            <h3><a href={paper.links[0].url}>{paper.title}</a></h3>
-            <p class="authors">{paper.authors.map((name, i) => <>{i > 0 ? ', ' : ''}{name === profile.name ? <strong>{name}</strong> : name}</>)}</p>
-            <p class="venue">{paper.venue}, {paper.year}</p>
-            <p>{paper.summary}</p>
-            <div class="text-links">{paper.links.map((link) => <a href={link.url}>{link.label}</a>)}</div>
-          </div>
-        </article>
-      ))}</div>
+      <div class="section-heading"><h2 class="home-section-title" id="research-heading">Research</h2><a href="/research/">View all research <span aria-hidden="true">→</span></a></div>
+      <PublicationList />
     </section>
 
     <section class="section" id="projects" aria-labelledby="projects-heading">
@@ -62,6 +53,7 @@ const projects = await getProjects();
     <section class="section" id="notes" aria-labelledby="notes-heading">
       <h2 class="home-section-title" id="notes-heading">Research Notes</h2>
       <p class="notes-intro">I also keep notes on papers, concepts, and things I learn along the way.</p>
+      <a class="notes-link" href="/wiki/">Explore Research Notes <span aria-hidden="true">→</span></a>
     </section>
   </div>
 </Base>

@@ -20,6 +20,7 @@ export const profile = {
     'Autonomous Systems',
     'Aerospace Engineering',
     'Sim2Real',
+    'SLAM',
   ],
 };
 
@@ -33,13 +34,17 @@ export const news: NewsItem[] = [
   { date: 'Nov 2026', emoji: '🎤', segments: [{ text: 'Presented our work at the International Conference on Space Robotics (iSpaRo 2026).' }] },
   { date: 'Aug 2026', emoji: '📄', segments: [
     { text: 'Two papers', href: '#research' },
-    { text: ' accepted to iSpaRo 2026: MarsLab and our survey on planetary robotics simulation.' },
+    { text: ' accepted to ' },
+    { text: 'iSpaRo 2026', href: 'https://www.isairas-isparo.de/' },
+    { text: ': MarsLab and our survey on planetary robotics simulation.' },
   ] },
   { date: 'Jun 2026', emoji: '🎙️', segments: [{ text: 'Presented our survey at the ICRA Workshop on Perceptual Challenges for Planetary Exploration.' }] },
   { date: 'May 2026', emoji: '🎉', segments: [
     { text: 'Our ' },
     { text: 'planetary robotics simulation survey', href: '#research' },
-    { text: ' was accepted to an ICRA 2026 workshop.' },
+    { text: ' was accepted to an ' },
+    { text: 'ICRA 2026 Workshop', href: 'https://icra2026-planetary-robotics.github.io/' },
+    { text: '.' },
   ] },
 ];
 
@@ -58,7 +63,8 @@ export const publications = [
       { label: 'Project', url: '/projects/marslab/' },
       { label: 'Paper', url: 'https://arxiv.org/abs/2609.34702' },
       { label: 'Code', url: 'https://github.com/kimhoyun-robotair/MarsLab' },
-      { label: 'Video', url: 'https://www.youtube.com/watch?v=gkr9NTTGlTw' },
+      { label: 'Video1', url: 'https://www.youtube.com/watch?v=gkr9NTTGlTw' },
+      { label: 'Video2', url: 'https://www.youtube.com/watch?v=RZ4jktGxNAs' },
     ],
   },
   {
@@ -82,10 +88,9 @@ export const publications = [
     imageWidth: 1254,
     imageHeight: 559,
     alt: 'Survey structure from domain requirements and systematic evaluation to gaps and open challenges',
-    summary: 'An earlier workshop version of our survey on simulation for planetary robotic perception.',
+    summary: 'A concise survey of simulation capabilities and gaps for planetary robotic perception.',
     links: [
       { label: 'Paper', url: 'https://openreview.net/pdf?id=pDcxtHEWj3' },
-      { label: 'Workshop', url: 'https://icra2026-planetary-robotics.github.io/' },
     ],
   },
 ];

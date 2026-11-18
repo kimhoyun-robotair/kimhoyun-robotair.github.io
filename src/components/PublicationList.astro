@@ -1,0 +1,21 @@
+---
+import { profile, publications } from '../data/profile';
+interface Props {
+  headingLevel?: 'h2' | 'h3';
+}
+const { headingLevel: Heading = 'h3' } = Astro.props;
+---
+<div class="publications">
+  {publications.map((paper) => (
+    <article class="publication">
+      <a class="publication-thumb" href={paper.links[0].url}><img src={paper.image} alt={paper.alt} width={paper.imageWidth} height={paper.imageHeight} loading="lazy" /></a>
+      <div>
+        <Heading><a href={paper.links[0].url}>{paper.title}</a></Heading>
+        <p class="authors">{paper.authors.map((name, i) => <>{i > 0 ? ', ' : ''}{name === profile.name ? <strong>{name}</strong> : name}</>)}</p>
+        <p class="venue">{paper.venue}, {paper.year}</p>
+        <p>{paper.summary}</p>
+        <div class="text-links">{paper.links.map((link) => <a href={link.url}>{link.label}</a>)}</div>
+      </div>
+    </article>
+  ))}
+</div>

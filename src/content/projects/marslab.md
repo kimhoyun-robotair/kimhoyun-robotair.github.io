@@ -19,8 +19,10 @@ links:
     url: https://arxiv.org/abs/2609.34702
   - label: Code
     url: https://github.com/kimhoyun-robotair/MarsLab
-  - label: Full video
+  - label: Video1
     url: https://www.youtube.com/watch?v=gkr9NTTGlTw
+  - label: Video2
+    url: https://www.youtube.com/watch?v=RZ4jktGxNAs
   - label: Scene assets
     url: https://drive.google.com/drive/folders/1evy98zVN0zn-F4Ga3ATRxnYj0xcarkEK
 citation: |

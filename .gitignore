@@ -5,9 +5,8 @@
 /.cache/
 *.tsbuildinfo
 
-# Local input material; the deployed portrait is public/images/hoyunkim.jpg
+# Local input material; the deployed portrait is public/images
 /info.md
-/hoyunkim.jpg
 
 # Local documentation, authoring templates, and browser tests
 /README.md

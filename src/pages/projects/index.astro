@@ -4,7 +4,7 @@ import ProjectGroups from '../../components/ProjectGroups.astro';
 import { getProjects } from '../../lib/content';
 const projects = await getProjects();
 ---
-<Base title="Projects" active="projects" description="Research projects by Hoyun Kim: simulation, sensing, and autonomy for field and aerospace robotics.">
+<Base title="Projects" active="projects" pageClass="project-page" description="Research projects by Hoyun Kim: simulation, sensing, and autonomy for field and aerospace robotics.">
   <div class="shell">
     <header class="page-intro"><p class="eyebrow">Research in practice</p><h1>Projects</h1><p>Building tools to study how robots perceive, navigate, and operate beyond the lab.</p></header>
     <div class="project-list"><ProjectGroups projects={projects} /></div>

@@ -58,7 +58,7 @@ export const publications = [
     imageWidth: 1920,
     imageHeight: 1080,
     alt: 'MarsLab showcase featuring Mars rover models and an aerial robot on Martian terrain',
-    summary: 'A configurable Isaac Sim platform for planetary rover perception and autonomy, with multi-modal sensing and ROS 2 interfaces.',
+    summary: 'We present MarsLab, an open-source, ROS 2-native Mars rover simulator for repeatable autonomy evaluation. It provides customizable HiRISE-based terrain, lighting, dust, sensing, and rover motion, along with ground-truth pose data. It supports Perseverance, Curiosity, Opportunity, and Spirit rovers with a range of camera and LiDAR configurations.',
     links: [
       { label: 'Project', url: '/projects/marslab/' },
       { label: 'Paper', url: 'https://arxiv.org/abs/2609.34702' },
@@ -76,7 +76,7 @@ export const publications = [
     imageWidth: 1216,
     imageHeight: 624,
     alt: 'Overview of planetary robotics simulation factors around a rover and aerial robot',
-    summary: 'A survey of planetary robotics simulation through openness, scenario coverage, sensing support, and environmental and operational realism.',
+    summary: 'We provide a simulation-centered perspective on recent work in planetary robotic perception and autonomy, organized around four practical axes: openness, scenario coverage, sensing support, and operational realism. Through this framework, we identify gaps in existing work and outline directions for future research.',
     links: [{ label: 'Paper', url: 'https://arxiv.org/abs/2609.34743' }],
   },
   {

@@ -1,11 +1,11 @@
 ---
 title: InhaAerodream
-subtitle: An aircraft project for the 22nd Robot Aircraft Competition
-description: An undergraduate aerial robotics project entered in the 22nd Robot Aircraft Competition in 2024.
+subtitle: An autonomous VTOL aircraft for the 22nd Robot Aircraft Competition
+description: A custom VTOL aircraft built with ROS 2 and PX4 for autonomous flight in the 22nd Robot Aircraft Competition in 2024.
 year: 2024
 undergraduate: true
 venue: 22nd Robot Aircraft Competition
-tags: [Aerial robotics, Aircraft, ROS 2]
+tags: [Aerial robotics, PX4, ROS 2]
 cover: /images/projects/inha-aerodream.jpg
 coverAlt: The InhaAerodream aircraft with its checkerboard-patterned wings.
 coverWidth: 1411
@@ -17,9 +17,11 @@ links:
 
 ## Overview
 
-**InhaAerodream** was an undergraduate aerial robotics project entered in the **22nd Robot Aircraft Competition in 2024**.
+**InhaAerodream** was an undergraduate project to design and build a custom vertical takeoff and landing (**VTOL**) aircraft for the **22nd Robot Aircraft Competition in 2024**. The aircraft used **ROS 2** and **PX4** for autonomous flight.
 
-The team repository documents work on object detection, precision landing, object tracking, camera control, and offboard flight-control software. It also includes a ROS 2 and PX4 development environment.
+Airframe development combined original aircraft design and aerodynamic analysis with hardware fabrication using **composites, foam, and balsa wood**.
+
+The competition missions included transitions between hover and fixed-wing flight in both directions, precision landing, and obstacle avoidance. To support these missions, the team implemented object detection, obstacle detection and avoidance, camera control, precision landing, offboard flight control, and flight-mode transitions.
 
 ## Code
 

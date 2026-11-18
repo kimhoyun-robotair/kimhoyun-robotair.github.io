@@ -12,7 +12,7 @@ const projects = await getProjects();
       <div>
         <h1 id="profile-name">{profile.name}</h1>
         <p class="position">{profile.role} · <strong>{profile.labAcronym}</strong>, <strong>{profile.institution}</strong></p>
-        <p>I received my bachelor’s degree in <strong>Aerospace Engineering</strong> from <a href="https://www.inha.ac.kr/kr/index.do"><strong>Inha University</strong></a>. I am now a master’s student at <a href={profile.institutionUrl}><strong>{profile.institution}</strong></a> in South Korea and a member of the <a href={profile.labUrl}>{profile.affiliation} (<strong>{profile.labAcronym}</strong>)</a>.</p>
+        <p>I received my bachelor’s degree in <strong>Aerospace Engineering</strong> from <a href="https://www.inha.ac.kr/eng/index.do"><strong>Inha University</strong></a>. I am now a master’s student at <a href={profile.institutionUrl}><strong>{profile.institution}</strong></a> in South Korea and a member of the <a href={profile.labUrl}>{profile.affiliation} (<strong>{profile.labAcronym}</strong>)</a>.</p>
         <p>My interests span <strong>Field Robotics</strong>, <strong>Aerospace Engineering</strong>, <strong>Sim2Real</strong>, and <strong>SLAM</strong>. I am particularly interested in building autonomous robotic systems that transfer capabilities developed in simulation to reliable operation in challenging real-world environments.</p>
         <div class="text-links">
           <a href={`mailto:${profile.email}`}>Email</a>

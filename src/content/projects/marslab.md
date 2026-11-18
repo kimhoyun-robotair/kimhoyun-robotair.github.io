@@ -1,7 +1,7 @@
 ---
 title: MarsLab
 subtitle: A Martian Rover Simulator for Planetary Rover Autonomous Navigation
-description: A ROS 2-native Mars rover simulator built on NVIDIA Isaac Sim, with continued upgrades planned.
+description: A ROS 2-native Mars rover simulator built on NVIDIA Isaac Sim, with continued upgrades planned including More realistic sensor simulation and Photorealistic Scene Generation.
 year: 2026
 venue: iSpaRo 2026 · Open-source simulation
 authors: [Hoyun Kim, Beomsu Kim, Giseop Kim]

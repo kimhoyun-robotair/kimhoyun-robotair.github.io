@@ -7,6 +7,7 @@
 
 # Local input material; the deployed portrait is public/images
 /info.md
+/aprl_avatar_transparent.png
 
 # Local documentation, authoring templates, and browser tests
 /README.md
@@ -33,6 +34,7 @@ Thumbs.db
 
 # Temporal Image and video files for making homepage
 tempimages/
+info.md
 
 # Keep src/, public/ (including media credits), scripts/check-links.mjs,
 # .github/workflows/, package*.json, .node-version, and Astro/TypeScript

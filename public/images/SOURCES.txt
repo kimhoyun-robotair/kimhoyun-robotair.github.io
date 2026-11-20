@@ -31,3 +31,32 @@ Star tracker reading notes
   Verification of On-Orbit Servicing Applications.
   Original attribution remains visible in the images and is repeated in captions.
   These are figures from the reviewed work, not Hoyun Kim's own research results.
+
+MarsLab documentation captures (19 November 2026)
+  /images/marslab/captures/ and /videos/marslab/captures/
+  Acquired by running the local MarsLab runtime in NVIDIA Isaac Sim 5.1.0.
+  Rover models: Perseverance, Curiosity, Opportunity, and Spirit.
+  Images are real simulator renders; depth and LiDAR plots use acquired arrays.
+  Observation-camera orbit motion, controlled lighting changes, and one real
+  controller-driven traversal are identified in the page captions.
+  No MARE media or AI-generated imagery is included.
+  Exact capture settings and output hashes: marslab/captures/provenance.json.
+  Underlying MarsLab asset credits include:
+    Rover visual sources: NASA/JPL-Caltech; Perseverance modeling by Zareh Gorjian.
+    HiRISE terrain: NASA/JPL-Caltech/University of Arizona.
+    Mars Rocks by Ivan Vakulko (milos4), CC BY 4.0:
+      https://sketchfab.com/3d-models/mars-rocks-9f5c946255a24f1cb630ea95dceea587
+      https://creativecommons.org/licenses/by/4.0/
+    These source assets were rendered as part of the MarsLab scenes.
+  See the MarsLab repository's asset and model source documentation for details.
+
+APRL affiliation logo
+  aprl_avatar_transparent.png: supplied by Hoyun Kim in the repository root.
+  Copied unchanged into public/images for deployment.
+
+Project action icons
+  GitHub, YouTube, and Google Drive paths from Simple Icons (CC0):
+    https://github.com/simple-icons/simple-icons
+    https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md
+  Used as inline SVGs in src/components/ProjectActionIcon.astro.
+  Document, trophy, and link symbols are inline SVG artwork for this site.

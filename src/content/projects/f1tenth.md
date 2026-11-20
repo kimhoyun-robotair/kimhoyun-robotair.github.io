@@ -13,8 +13,6 @@ coverAlt: The F1TENTH autonomous racing project with RCV Formula.
 coverWidth: 4032
 coverHeight: 1816
 links:
-  - label: Code
-    url: https://github.com/rcv-formula
   - label: Simulation code
     url: https://github.com/kimhoyun-robotair/robotics-sim-tutorial-kr/tree/Humble
 ---
@@ -27,6 +25,6 @@ The competition rules prohibited **3D LiDAR**, so I developed **SLAM and state e
 
 ## Team and code
 
-I am a **former team member** and am no longer affiliated with RCV Formula. The team’s repositories remain available through the [RCV Formula GitHub organization](https://github.com/rcv-formula).
+I am a **former team member** and am no longer affiliated with RCV Formula.
 
 The simulation code is available in the [`Humble` branch of robotics-sim-tutorial-kr](https://github.com/kimhoyun-robotair/robotics-sim-tutorial-kr/tree/Humble).

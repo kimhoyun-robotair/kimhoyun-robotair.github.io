@@ -5,7 +5,8 @@ interface Props {
   headingLevel?: 'h2' | 'h3' | 'h4';
 }
 const { project: { id, data }, headingLevel: Heading = 'h2' } = Astro.props;
-const code = data.links.find((link) => link.label === 'Code');
+const code = data.links.find((link) => link.label === 'Code')
+  ?? data.links.find((link) => link.label === 'Simulation code');
 ---
 <article class="project-list-item" data-project={id}>
   <a class="project-thumb" href={`/projects/${id}/`}><img src={data.cover} alt={data.coverAlt} width={data.coverWidth} height={data.coverHeight} loading="lazy" /></a>

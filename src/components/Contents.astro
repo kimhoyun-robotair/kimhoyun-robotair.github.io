@@ -1,12 +1,29 @@
 ---
-interface Props { headings: { depth: number; slug: string; text: string }[]; }
-const headings = Astro.props.headings.filter((h) => h.depth === 2);
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+  subheadingSlugs?: string[];
+}
+const { headings: allHeadings, subheadingSlugs = [] } = Astro.props;
+const headings = allHeadings.filter((h) => h.depth === 2).map((heading) => {
+  const start = allHeadings.indexOf(heading);
+  const end = allHeadings.findIndex((h, i) => i > start && h.depth <= 2);
+  return {
+    ...heading,
+    children: allHeadings.slice(start + 1, end < 0 ? undefined : end)
+      .filter((h) => h.depth === 3 && subheadingSlugs.includes(h.slug)),
+  };
+});
 ---
 {headings.length > 0 && (
     <details class="contents" open>
       <summary>On this page</summary>
       <nav aria-label="Table of contents">
-        {headings.map((h, i) => <a href={`#${h.slug}`}><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{h.text}</a>)}
+        {headings.map((h, i) => <div class="contents-section">
+          <a href={`#${h.slug}`}><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{h.text}</a>
+          {h.children.length > 0 && <ul class="contents-subsections">
+            {h.children.map((child) => <li><a href={`#${child.slug}`}>{child.text}</a></li>)}
+          </ul>}
+        </div>)}
       </nav>
     </details>
 )}

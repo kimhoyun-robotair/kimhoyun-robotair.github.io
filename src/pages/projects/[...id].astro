@@ -3,6 +3,9 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Contents from '../../components/Contents.astro';
+import MarsLabMedia from '../../components/MarsLabMedia.astro';
+import ProjectActionIcon from '../../components/ProjectActionIcon.astro';
+import '../../styles/marslab-media.css';
 import { getProjects } from '../../lib/content';
 export async function getStaticPaths() {
   return (await getProjects()).map((project) => ({ params: { id: project.id }, props: { project } }));
@@ -13,7 +16,7 @@ const { data } = project;
 const { Content, headings } = await render(project);
 const contents = data.citation ? [...headings, { depth: 2, slug: 'citation', text: 'Citation' }] : headings;
 ---
-<Base title={data.title} description={data.description} image={data.cover} active="projects" pageClass="project-page">
+<Base title={data.title} description={data.description} image={data.cover} active="projects" pageClass={project.id === 'marslab' ? 'project-page marslab-project' : 'project-page'}>
   <header class="project-hero">
     <div class="project-hero-inner">
       <a class="back-link" href="/projects/">← All projects</a>
@@ -22,21 +25,27 @@ const contents = data.citation ? [...headings, { depth: 2, slug: 'citation', tex
       <h1>{data.title}</h1>
       <p class="project-subtitle">{data.subtitle}</p>
       {data.authors.length > 0 && <p class="project-authors">{data.authors.map((name, i) => <>{i > 0 ? ' · ' : ''}{name === 'Hoyun Kim' ? <a href="/">{name}</a> : name}</>)}</p>}
-      {data.affiliation && <p class="project-affiliation">{data.affiliation}</p>}
+      {data.affiliation && <p class="project-affiliation"><span class="project-affiliation-content">
+        {data.affiliationLogo && <img class="project-affiliation-logo" src={data.affiliationLogo} alt="" width="44" height="44" />}
+        <span>{data.affiliationUrl ? <a href={data.affiliationUrl}>{data.affiliation}</a> : data.affiliation}{data.affiliationSuffix && `, ${data.affiliationSuffix}`}</span>
+      </span></p>}
       {data.highlight && <p class="project-highlight"><span aria-hidden="true">🏆</span> {data.highlight}</p>}
       {data.membershipNote && <p class="project-membership">{data.membershipNote}</p>}
-      <div class="project-actions">{data.links.map((link, i) => <a class:list={['button', { primary: i === 0 }]} href={link.url}>{link.label}<span aria-hidden="true">↗</span></a>)}</div>
-      <figure>
-        {data.video ? <video controls muted playsinline preload="none" poster={data.videoPoster ?? data.cover} width="960" height="540" aria-label={`${data.title} rover demonstration`}><source src={data.video} type="video/mp4" /><a href={data.video}>Download the demonstration video</a></video> : <img class="cover-image" src={data.cover} alt={data.coverAlt} width={data.coverWidth} height={data.coverHeight} />}
+      <div class="project-actions">{data.links.map((link, i) => <a class:list={['button', { primary: i === 0 }]} href={link.url}><ProjectActionIcon label={link.label} url={link.url} />{link.label}</a>)}</div>
+      {data.youtubeId ? <div class="project-youtube">
+        <iframe src={`https://www.youtube.com/embed/${data.youtubeId}?autoplay=0&playsinline=1&rel=0`} title={`${data.title} project video on YouTube`} width="1280" height="720" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div> : <figure>
+        {data.video ? <video controls muted playsinline loop={project.id === 'marslab'} data-autoplay-loop={project.id === 'marslab' ? '' : undefined} preload="none" poster={data.videoPoster ?? data.cover} width="1280" height="720" aria-label={`${data.title} rover demonstration`}><source src={data.video} type="video/mp4" /><a href={data.video}>Download the demonstration video</a></video> : <img class="cover-image" src={data.cover} alt={data.coverAlt} width={data.coverWidth} height={data.coverHeight} />}
         <figcaption>{data.video ? data.videoCaption ?? data.coverAlt : data.coverAlt}</figcaption>
-      </figure>
+      </figure>}
     </div>
   </header>
   <div class="article-shell">
-    <aside class="contents-sidebar"><Contents headings={contents} /></aside>
+    <aside class="contents-sidebar"><Contents headings={contents} subheadingSlugs={project.id === 'marslab' ? ['perseverance', 'curiosity', 'opportunity', 'spirit'] : []} /></aside>
     <article class="article-main">
       <div class="prose"><Content /></div>
       {data.citation && <section class="citation" id="citation"><div class="citation-head"><h2>Citation</h2><button class="button" type="button" data-copy-target="bibtex" aria-live="polite">Copy BibTeX</button></div><pre><code id="bibtex">{data.citation}</code></pre></section>}
     </article>
   </div>
+  {project.id === 'marslab' && <MarsLabMedia />}
 </Base>

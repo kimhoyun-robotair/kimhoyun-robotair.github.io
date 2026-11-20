@@ -1,0 +1,56 @@
+<script>
+  // Native controls and the full comparison remain usable without JavaScript.
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+  const videos = [...document.querySelectorAll<HTMLVideoElement>('video[data-autoplay-loop]')];
+  const visible = new Set<HTMLVideoElement>();
+  const userPaused = new WeakSet<HTMLVideoElement>();
+  const automaticPauses = new WeakSet<HTMLVideoElement>();
+  const pause = (video: HTMLVideoElement) => {
+    if (!video.paused) {
+      automaticPauses.add(video);
+      video.pause();
+    }
+  };
+  const update = () => videos.forEach((video) => {
+    if (document.hidden || !visible.has(video)) {
+      pause(video);
+    } else if (!motion.matches && !connection?.saveData && !userPaused.has(video)) {
+      void video.play().catch(() => { /* Native play control remains available. */ });
+    }
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting, intersectionRatio }) => {
+      const video = target as HTMLVideoElement;
+      if (isIntersecting && intersectionRatio >= 0.35) visible.add(video);
+      else visible.delete(video);
+    });
+    update();
+  }, { threshold: 0.35 });
+  videos.forEach((video) => {
+    video.addEventListener('pause', () => {
+      if (automaticPauses.has(video)) automaticPauses.delete(video);
+      else userPaused.add(video);
+    });
+    video.addEventListener('play', () => userPaused.delete(video));
+    observer.observe(video);
+  });
+  document.addEventListener('visibilitychange', update);
+  motion.addEventListener('change', () => {
+    if (motion.matches) videos.forEach(pause);
+    else update();
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-dust-comparison]').forEach((comparison) => {
+    const controls = comparison.querySelector<HTMLFieldSetElement>('fieldset');
+    const images = comparison.querySelectorAll<HTMLElement>('[data-tau]');
+    if (!controls) return;
+    const select = () => {
+      const selected = controls.querySelector<HTMLInputElement>('input:checked')?.value;
+      images.forEach((figure) => { figure.hidden = figure.dataset.tau !== selected; });
+    };
+    controls.hidden = false;
+    controls.addEventListener('change', select);
+    select();
+  });
+</script>

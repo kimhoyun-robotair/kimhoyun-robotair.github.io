@@ -1,0 +1,388 @@
+{
+  "captured_on": "2026-11-19",
+  "source_repository": "https://github.com/kimhoyun-robotair/MarsLab",
+  "source_commit": "3eb19d6e400ee0ab35fd6aa2b3eef14721ee3992",
+  "source_worktree_had_local_changes": true,
+  "simulator": "NVIDIA Isaac Sim 5.1.0",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "renderer": "Ray-traced lighting, DLAA",
+  "captures": {
+    "perseverance": {
+      "robot": "perseverance",
+      "scene": "main_crater",
+      "spawn": [
+        0.0,
+        0.0,
+        0.9624598741531598
+      ],
+      "settled": [
+        -0.014553949236869812,
+        -0.004088759422302246,
+        0.6326602697372437
+      ],
+      "rgb_shape": [
+        480,
+        640,
+        4
+      ],
+      "depth_shape": [
+        480,
+        640
+      ],
+      "lidar_points": 10035,
+      "observer_shape": [
+        720,
+        1280,
+        4
+      ],
+      "observer_focal_length_mm": 28,
+      "observer_horizontal_aperture_mm": 36,
+      "exposure_seconds": 0.002,
+      "ISO": 100,
+      "f_number": 5,
+      "tau": 0.25,
+      "sun_azimuth_deg": 135,
+      "sun_elevation_deg": 35,
+      "native_primary_camera": true,
+      "additional_cameras_disabled_for_capture": true,
+      "ros2_enabled": false,
+      "orbit_frames": 192,
+      "orbit_fps": 24,
+      "physics_dt": 0.016666666666666666,
+      "config_sha256": "b079ab53b623e6223a48152aeb2dcc60f8228f87bb23f312365461138c1dd526"
+    },
+    "curiosity": {
+      "robot": "curiosity",
+      "scene": "jezero_plain",
+      "spawn": [
+        0.0,
+        0.0,
+        17.5268518447876
+      ],
+      "settled": [
+        0.023009851574897766,
+        0.00041675008833408356,
+        17.31795310974121
+      ],
+      "rgb_shape": [
+        1024,
+        1024,
+        4
+      ],
+      "depth_shape": [
+        0
+      ],
+      "lidar_points": 0,
+      "observer_shape": [
+        720,
+        1280,
+        4
+      ],
+      "observer_focal_length_mm": 28,
+      "observer_horizontal_aperture_mm": 36,
+      "exposure_seconds": 0.002,
+      "ISO": 100,
+      "f_number": 5,
+      "tau": 0.25,
+      "sun_azimuth_deg": 135,
+      "sun_elevation_deg": 35,
+      "native_primary_camera": true,
+      "additional_cameras_disabled_for_capture": true,
+      "ros2_enabled": false,
+      "orbit_frames": 192,
+      "orbit_fps": 24,
+      "physics_dt": 0.016666666666666666,
+      "config_sha256": "3d15563979eeb740824fc60f60b4900caa0baf88b8ca7ceb76a2bc5da113cf9c"
+    },
+    "opportunity": {
+      "robot": "opportunity",
+      "scene": "main_crater",
+      "spawn": [
+        0.0,
+        0.0,
+        0.8294860792160261
+      ],
+      "settled": [
+        -0.006576128304004669,
+        0.0004767104983329773,
+        0.6397458910942078
+      ],
+      "rgb_shape": [
+        1024,
+        1024,
+        4
+      ],
+      "depth_shape": [
+        0
+      ],
+      "lidar_points": 0,
+      "observer_shape": [
+        720,
+        1280,
+        4
+      ],
+      "observer_focal_length_mm": 28,
+      "observer_horizontal_aperture_mm": 36,
+      "exposure_seconds": 0.002,
+      "ISO": 100,
+      "f_number": 5,
+      "tau": 0.25,
+      "sun_azimuth_deg": 135,
+      "sun_elevation_deg": 35,
+      "native_primary_camera": true,
+      "additional_cameras_disabled_for_capture": true,
+      "ros2_enabled": false,
+      "orbit_frames": 192,
+      "orbit_fps": 24,
+      "physics_dt": 0.016666666666666666,
+      "config_sha256": "e871bcdb53044fe4668162032c1abe369d4e964be796366bc0ecac2374822a40"
+    },
+    "spirit": {
+      "robot": "spirit",
+      "scene": "mars_base",
+      "spawn": [
+        0.0,
+        0.0,
+        26.47887069702148
+      ],
+      "settled": [
+        0.030039474368095398,
+        0.0008944757282733917,
+        26.327457427978516
+      ],
+      "rgb_shape": [
+        1024,
+        1024,
+        4
+      ],
+      "depth_shape": [
+        0
+      ],
+      "lidar_points": 0,
+      "observer_shape": [
+        720,
+        1280,
+        4
+      ],
+      "observer_focal_length_mm": 28,
+      "observer_horizontal_aperture_mm": 36,
+      "exposure_seconds": 0.002,
+      "ISO": 100,
+      "f_number": 5,
+      "tau": 0.25,
+      "sun_azimuth_deg": 135,
+      "sun_elevation_deg": 35,
+      "native_primary_camera": true,
+      "additional_cameras_disabled_for_capture": true,
+      "ros2_enabled": false,
+      "orbit_frames": 192,
+      "orbit_fps": 24,
+      "physics_dt": 0.016666666666666666,
+      "config_sha256": "6722aedfa2d2cbcbc2deda3971f686779730c3ab2003f55d58fafded7fe47bab"
+    }
+  },
+  "dust_comparison": {
+    "tau": [
+      0.05,
+      0.5,
+      2,
+      6
+    ],
+    "sun_azimuth_deg": 135,
+    "sun_elevation_deg": 35,
+    "exposure_seconds": 0.002,
+    "fixed_camera": true
+  },
+  "sunlight": {
+    "tau": 0.25,
+    "azimuth_deg": [
+      85,
+      275
+    ],
+    "elevation_deg": [
+      12,
+      48
+    ],
+    "type": "controlled periodic parameter sweep",
+    "frames": 168,
+    "fps": 24
+  },
+  "drive": {
+    "command_v_m_s": 0.6,
+    "command_w_rad_s": 0,
+    "physics_steps": 720,
+    "simulation_seconds": 12,
+    "frames": 240,
+    "fps": 20,
+    "displacement_m": 5.010647061641294,
+    "trajectory_samples": 240,
+    "pose_animation": false
+  },
+  "processing": {
+    "stills": "WebP, quality 86; depth quality 95",
+    "videos": "H.264/yuv420p, CRF 25, faststart, no audio",
+    "depth": "Magma colormap with logarithmic 0.3\u2013200 m scale; invalid samples dark",
+    "lidar": "Scatter plot of 10035 acquired XYZ points; color encodes distance from raw coordinate origin, 0\u2013200 m",
+    "perseverance_orbit": "Initial delayed camera frames removed (0.167 s requested trim; final encoded duration 7.792 s)."
+  },
+  "notes": [
+    "Observation cameras are additional documentation viewpoints. Native camera calibration is retained.",
+    "Additional profile cameras and ROS publication disabled for these captures.",
+    "Rover orbits are observation-camera motion with live physics, not rover-driving demonstrations.",
+    "New media are simulation captures or visualizations of acquired data; no AI-generated imagery."
+  ],
+  "media": [
+    {
+      "path": "/images/marslab/captures/curiosity-landscape.webp",
+      "bytes": 167752,
+      "sha256": "6f8fb5ad6b6370104ec92b2d2de7353f9cbf4c039f2c091c3392f90aa6d07065"
+    },
+    {
+      "path": "/images/marslab/captures/curiosity-portrait.webp",
+      "bytes": 104172,
+      "sha256": "33df617f298dd5312718d94d289ab76e735bf163e4694008badfa6500eb81ec7"
+    },
+    {
+      "path": "/images/marslab/captures/depth-scale.webp",
+      "bytes": 5222,
+      "sha256": "f1ca95a7e8d7a36b36264c351cedffbdab60a682bd13ec1224a662e803531c52"
+    },
+    {
+      "path": "/images/marslab/captures/drive.webp",
+      "bytes": 110516,
+      "sha256": "03434c74a45a0db919c4fdddfd7437091dbb744ed7d605762466645f60958a26"
+    },
+    {
+      "path": "/images/marslab/captures/dust-0.05.webp",
+      "bytes": 135692,
+      "sha256": "00b11a0c023db468072e950848ad35c9ee8be58c650a471aa92e2545e15d6e0d"
+    },
+    {
+      "path": "/images/marslab/captures/dust-0.5.webp",
+      "bytes": 133450,
+      "sha256": "93c47ce830ffcd0cb45ec4cf8663d36370f68d19815de0c216c82052b117a216"
+    },
+    {
+      "path": "/images/marslab/captures/dust-2.0.webp",
+      "bytes": 97342,
+      "sha256": "c55eab3be4958aa1a2fc6cff56db58d4a59474abe19ba8ebc4094442ccdb4266"
+    },
+    {
+      "path": "/images/marslab/captures/dust-6.0.webp",
+      "bytes": 90140,
+      "sha256": "b69d49250fada449432e2fcc7726937645e9d3938b5cf6321290431affef7b87"
+    },
+    {
+      "path": "/images/marslab/captures/grand-canyon-landscape.webp",
+      "bytes": 201648,
+      "sha256": "2c0010360f58ec72ee44a4c32a792ae96de376e0a34d79d256590f1f2e251737"
+    },
+    {
+      "path": "/images/marslab/captures/opportunity-portrait.webp",
+      "bytes": 88002,
+      "sha256": "77b3328057c3422435945c0c056f6ceb02e898bd3c0f8bfc21ae950d8a1f1e03"
+    },
+    {
+      "path": "/images/marslab/captures/perseverance-depth.webp",
+      "bytes": 15662,
+      "sha256": "330d6236a1645162ed8de211cf3e92a28f47db27e958402f72e10eb1a8d7b3fd"
+    },
+    {
+      "path": "/images/marslab/captures/perseverance-landscape.webp",
+      "bytes": 174794,
+      "sha256": "693d47906a6fd6323edd1ce54cd9beaa23a7d8edba64d8b43c11a793e1e5c8a7"
+    },
+    {
+      "path": "/images/marslab/captures/perseverance-lidar.webp",
+      "bytes": 75992,
+      "sha256": "8c5d8616f50f53fbc23963fddb8229b1638c13d0f6da4b4285c4b54f4da81538"
+    },
+    {
+      "path": "/images/marslab/captures/perseverance-portrait.webp",
+      "bytes": 106914,
+      "sha256": "f84dd3a43dd49a6c58fd89150fb8eb478f09f7fee2f4c009ea3cd9995ca59645"
+    },
+    {
+      "path": "/images/marslab/captures/perseverance-primary.webp",
+      "bytes": 28516,
+      "sha256": "b3e6ae8e332879613ed37aec0004b7443dc68097501408e7c64f017d6c8bc3c0"
+    },
+    {
+      "path": "/images/marslab/captures/spirit-landscape.webp",
+      "bytes": 168126,
+      "sha256": "2e31a37dc5759299d54db0200831ab3258e8166a7872074f86e200923ec419b9"
+    },
+    {
+      "path": "/images/marslab/captures/spirit-portrait.webp",
+      "bytes": 80080,
+      "sha256": "865a4e3749aaa95e701778c819bcac3a172f2c1851a4b58bf63fb8b454f079a4"
+    },
+    {
+      "path": "/images/marslab/captures/sunlight.webp",
+      "bytes": 106420,
+      "sha256": "11a41dd6c8911d2a6d870d863265efa15aeb53b90461d81476b6329fe0ede596"
+    },
+    {
+      "path": "/videos/marslab/captures/curiosity-orbit.mp4",
+      "bytes": 1937932,
+      "sha256": "49ab94d6ec7ee7af277cb29f5aa6fec874a249039a2ccbfdfe1ae369184cd733"
+    },
+    {
+      "path": "/videos/marslab/captures/drive.mp4",
+      "bytes": 1391160,
+      "sha256": "487ff99a862fa5d0f72e631e6d999402854f5e28c4a578db90794a22d6d9c15f"
+    },
+    {
+      "path": "/videos/marslab/captures/opportunity-orbit.mp4",
+      "bytes": 1598749,
+      "sha256": "9be9d4b417074d9d347a82e992521f21743833848f7cd605278d6076ef74648e"
+    },
+    {
+      "path": "/videos/marslab/captures/perseverance-orbit.mp4",
+      "bytes": 2073054,
+      "sha256": "96d771ead7ecb43dc4c827538f3173f5c3ff1d001c54695ab4d5cd81cb56749d"
+    },
+    {
+      "path": "/videos/marslab/captures/spirit-orbit.mp4",
+      "bytes": 1547429,
+      "sha256": "18af6c7861cac2c7f4a953f549daa2eed2672315d6c1bb8df305f264adb4b9bf"
+    },
+    {
+      "path": "/videos/marslab/captures/sunlight.mp4",
+      "bytes": 1079790,
+      "sha256": "1e8ea1cadb0350caea5e033f87efd66cda0f906d5456b35de330a259bfd18b96"
+    }
+  ],
+  "landscape_overrides": {
+    "grand-canyon-landscape.webp": {
+      "scene": "grand_canyon",
+      "sun_elevation_deg": 55,
+      "camera_eye": [
+        900,
+        -1100,
+        1100
+      ],
+      "camera_target": [
+        0,
+        0,
+        180
+      ],
+      "configuration_sha256": "ddc539bc1b9507140abfc723d5773ebf7b221ef5f91f1d4546e0d26cb7fbdc02"
+    },
+    "spirit-landscape.webp": {
+      "scene": "mars_base",
+      "sun_elevation_deg": 55,
+      "camera_eye": [
+        -60,
+        75,
+        90
+      ],
+      "camera_target": [
+        35,
+        173,
+        40
+      ],
+      "configuration_sha256": "07b69243c609039b30caab2f7ecf3e8860a7d4dd9049915c141c7e94fb63eb14"
+    }
+  }
+}
